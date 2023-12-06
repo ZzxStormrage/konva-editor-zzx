@@ -2,22 +2,35 @@
  * @Author: zzx 452436275@qq.com
  * @Date: 2023-12-05 14:16:03
  * @LastEditors: zzx 452436275@qq.com
- * @LastEditTime: 2023-12-05 19:09:39
+ * @LastEditTime: 2023-12-06 16:35:52
  * @FilePath: /editor-main-zzx/src/KonvaEditor/index.ts
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 import Konva from 'konva'
+import { SvgDrawer } from './core/SvgDrawer/SvgDrawer'
 
 export default class Editor {
-  private stage: Konva.Stage
-  private layer: Konva.Layer
+  public stage: Konva.Stage
+  public layer: Konva.Layer
+
+  public svgDraw: SvgDrawer
+
+  public containerId: string
+  public width: number
+  public height: number
 
   constructor(containerId: string, width: number, height: number) {
+    this.containerId = containerId
+    this.width = width
+    this.height = height
+
+    this.svgDraw = new SvgDrawer(this)
+
     // 创建舞台对象，它是所有图形对象的容器
     this.stage = new Konva.Stage({
-      container: containerId, // 容器的 DOM 元素的 id
-      width: width,
-      height: height,
+      container: this.containerId, // 容器的 DOM 元素的 id
+      width: this.width,
+      height: this.height,
     })
 
     // 创建图层对象
@@ -27,16 +40,18 @@ export default class Editor {
     this.stage.add(this.layer)
   }
 
-  // 一个方法来添加一个矩形到画布
-  public addRectangle() {
+  /**
+   * init 初始化画布
+   */
+  public initBackground(fill: string = '#f3f3f3'): void {
     const rect = new Konva.Rect({
-      x: 20,
-      y: 20,
-      width: 100,
-      height: 50,
-      fill: 'red',
-      stroke: 'black',
-      strokeWidth: 4,
+      x: 0,
+      y: 0,
+      width: this.width,
+      height: this.height,
+      fill: fill,
+      strokeWidth: 0,
+      listening: false, // 设置为false使得矩形不可交互
     })
 
     // 将矩形添加到图层

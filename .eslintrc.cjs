@@ -2,7 +2,7 @@
  * @Author: zzx 452436275@qq.com
  * @Date: 2023-12-05 11:35:38
  * @LastEditors: zzx 452436275@qq.com
- * @LastEditTime: 2023-12-05 18:02:54
+ * @LastEditTime: 2023-12-06 15:10:04
  * @FilePath: /editor-main-zzx/.eslintrc.cjs
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -39,6 +39,9 @@ module.exports = {
         },
       },
     ],
+    'no-unused-vars': 'off',
+    '@typescript-eslint/no-unused-vars': ['off'],
+    '@typescript-eslint/no-explicit-any': 'off',
     // 禁止使用多余的包
     'import/no-extraneous-dependencies': 0,
     // 确保在导入路径内一致使用文件扩展名
@@ -80,7 +83,6 @@ module.exports = {
     'no-restricted-syntax': 0,
     'prefer-promise-reject-errors': 0,
     'no-async-promise-executor': 0,
-    'no-unused-vars': 0,
     // 禁止在变量定义之前使用它们
     'no-use-before-define': 0,
     // 禁止直接调用 Object.prototypes 的内置属性
