@@ -2,7 +2,7 @@
  * @Author: zzx 452436275@qq.com
  * @Date: 2023-12-06 15:46:56
  * @LastEditors: zzx 452436275@qq.com
- * @LastEditTime: 2023-12-06 18:05:43
+ * @LastEditTime: 2023-12-11 17:30:20
  * @FilePath: /editor-main-zzx/src/KonvaEditor/core/SvgDrawer/SvgDrawer.ts
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -24,7 +24,8 @@ export class SvgDrawer {
     this.editor = editor
   }
 
-  public drawSvgPaths(svgPaths: SvgPathData[]): void {
+  // 绘制SVG
+  public drawSvgPath(svgPaths: SvgPathData[]): void {
     const bounds = this.calculateSvgBounds(svgPaths)
     const { scale, offsetX, offsetY } = this.getSvgScaleOffset(this.editor.width, this.editor.height, bounds)
 
@@ -42,6 +43,7 @@ export class SvgDrawer {
     this.editor.layer.draw()
   }
 
+  // 计算svg 坐标
   private calculateSvgBounds(svgPaths: SvgPathData[]): Bounds {
     let minX = Infinity
     let maxX = -Infinity
@@ -60,6 +62,7 @@ export class SvgDrawer {
     return { minX, maxX, minY, maxY }
   }
 
+  // 计算svg 位于画布的比例
   private getSvgScaleOffset(canvasWidth: number, canvasHeight: number, bounds: Bounds) {
     let { minX, maxX, minY, maxY } = bounds
     const svgWidth = maxX - minX
