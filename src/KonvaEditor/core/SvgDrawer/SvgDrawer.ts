@@ -2,7 +2,7 @@
  * @Author: zzx 452436275@qq.com
  * @Date: 2023-12-06 15:46:56
  * @LastEditors: zzx 452436275@qq.com
- * @LastEditTime: 2023-12-11 17:30:20
+ * @LastEditTime: 2023-12-14 15:14:12
  * @FilePath: /editor-main-zzx/src/KonvaEditor/core/SvgDrawer/SvgDrawer.ts
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -36,11 +36,20 @@ export class SvgDrawer {
         y: (pathData.y || 0) * scale + offsetY,
         scaleX: scale,
         scaleY: scale,
+        fill: '#ccc',
       })
       this.editor.layer.add(path)
     })
 
     this.editor.layer.draw()
+  }
+
+  public changePathColor(pathId: string, color: string): void {
+    const path = this.editor.layer.find((node: Konva.Node) => node.id() === pathId)[0]
+    if (path) {
+      path.setAttr('fill', color)
+      this.editor.layer.draw()
+    }
   }
 
   // 计算svg 坐标
