@@ -11,6 +11,9 @@
   },
   "dependencies": {
     "konva": "^9.2.3",
+    "node-sass": "^9.0.0",
+    "sass": "^1.69.5",
+    "sass-loader": "^13.3.2",
     "vue": "^3.3.8"
   },
   "devDependencies": {

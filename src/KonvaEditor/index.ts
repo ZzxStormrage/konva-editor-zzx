@@ -2,7 +2,7 @@
  * @Author: zzx 452436275@qq.com
  * @Date: 2023-12-05 14:16:03
  * @LastEditors: zzx 452436275@qq.com
- * @LastEditTime: 2023-12-06 16:35:52
+ * @LastEditTime: 2023-12-21 19:21:13
  * @FilePath: /editor-main-zzx/src/KonvaEditor/index.ts
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -61,8 +61,14 @@ export default class Editor {
     this.layer.draw()
   }
 
-  // 一个方法来清除画布
-  public clear(): void {
+  // 获取canvas 节点
+  public getCanvasNodeById(nodeId: string) {
+    const node = this.stage.find((node: Konva.Node) => node.id() === nodeId)[0]
+    return node
+  }
+
+  // 清除画布
+  public clearCanvas(): void {
     this.layer.destroyChildren()
     this.layer.draw()
   }
