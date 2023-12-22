@@ -2,13 +2,14 @@
  * @Author: zzx 452436275@qq.com
  * @Date: 2023-12-05 11:33:14
  * @LastEditors: zzx 452436275@qq.com
- * @LastEditTime: 2023-12-22 11:31:10
+ * @LastEditTime: 2023-12-22 17:20:38
  * @FilePath: /editor-main-zzx/src/App.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
 <template>
   <div class="btns">
     <button @click="changeSvgBgColor">改变svg背景色</button>
+    <button @click="addImg">添加图片</button>
   </div>
   <div>
     <div id="canvas-container"></div>
@@ -42,6 +43,11 @@ function changeSvgBgColor() {
   })
 
   editor.svgDraw.changeSvgBgColor(svgCoverListTemp, randomColor)
+}
+
+function addImg() {
+  let url = 'https://ec-sh.oss-cn-beijing.aliyuncs.com/complier/images/202304/baaf499d739d4f3a9f38957c8657dace.png'
+  editor.imgDrawer.drawImg(url)
 }
 
 // 生成随机颜色
