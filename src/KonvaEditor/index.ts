@@ -9,12 +9,14 @@
 import Konva from 'konva'
 import { SvgDrawer } from './core/SvgDrawer/SvgDrawer'
 import { ImgDrawer } from './core/ImgDrawer/ImgDrawer'
+import { TextDrawer } from './core/TextDrawer/TextDrawer'
 export default class Editor {
   public stage: Konva.Stage
   public layer: Konva.Layer
 
   public svgDraw: SvgDrawer
   public imgDrawer: ImgDrawer
+  public textDrawer: TextDrawer
 
   public containerId: string
   public width: number
@@ -27,6 +29,7 @@ export default class Editor {
 
     this.svgDraw = new SvgDrawer(this)
     this.imgDrawer = new ImgDrawer(this)
+    this.textDrawer = new TextDrawer(this)
 
     // 创建舞台对象，它是所有图形对象的容器
     this.stage = new Konva.Stage({
