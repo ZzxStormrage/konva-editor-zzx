@@ -1,30 +1,34 @@
+/*
+ * @Author: zzx 452436275@qq.com
+ * @Date: 2023-12-27 17:22:33
+ * @LastEditors: zzx 452436275@qq.com
+ * @LastEditTime: 2024-01-08 14:15:13
+ * @FilePath: /editor-main-zzx/src/KonvaEditor/core/Transformer/Transformer.ts
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
 import Konva from 'konva'
+import Editor from '../../index'
 
-class ImageTransformer extends Konva.Transformer {
-  constructor(config?: Konva.TransformerConfig) {
-    super(config)
+class Transformer {
+  private editor: Editor
+
+  constructor(editor: Editor) {
+    this.editor = editor
   }
 
-  _createAnchor(name: string): Konva.Circle {
-    const anchor = super._createAnchor(name)
+  public addTransformer(node: Konva.Node): void {
+    let tr = new Konva.Transformer({
+      node: node,
+      anchorStroke: 'red',
+      anchorFill: 'yellow',
+      anchorSize: 20,
+      borderStroke: 'green',
+      rotationSnaps: [0, 90, 180, 270],
+      borderDash: [3, 3],
+    })
 
-    if (name === 'rotater') {
-      const imageObj = new Image()
-      imageObj.src = 'your-image-url' // 你的图片URL
-
-      imageObj.onload = () => {
-        // 使用类型断言确保anchor被视为Konva.Shape
-        const shapeAnchor = anchor as Konva.Shape
-        shapeAnchor.fillPatternImage(imageObj)
-        shapeAnchor.fillPatternOffset({ x: imageObj.width / 2, y: imageObj.height / 2 })
-        shapeAnchor.fillPatternScale({ x: 0.5, y: 0.5 }) // 根据需要调整图片大小
-        // 由于图片加载是异步的，需要调用draw()来更新canvas
-        shapeAnchor.getLayer()?.draw()
-      }
-    }
-
-    return anchor
+    node.getLayer().add(tr)
   }
 }
 
-export default ImageTransformer
+export default Transformer
