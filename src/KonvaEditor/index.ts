@@ -2,7 +2,7 @@
  * @Author: zzx 452436275@qq.com
  * @Date: 2023-12-05 14:16:03
  * @LastEditors: zzx 452436275@qq.com
- * @LastEditTime: 2024-01-08 14:57:31
+ * @LastEditTime: 2024-01-15 15:55:32
  * @FilePath: /editor-main-zzx/src/KonvaEditor/index.ts
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -11,6 +11,8 @@ import { SvgDrawer } from './core/SvgDrawer/SvgDrawer'
 import { ImgDrawer } from './core/ImgDrawer/ImgDrawer'
 import { TextDrawer } from './core/TextDrawer/TextDrawer'
 import { Transformer } from './core/Transformer/Transformer'
+import { RenderData } from './core/RenderData/RenderData'
+
 export default class Editor {
   public stage: Konva.Stage
   public layer: Konva.Layer
@@ -19,6 +21,7 @@ export default class Editor {
   public imgDrawer: ImgDrawer
   public textDrawer: TextDrawer
   public transformer: Transformer
+  public renderData: RenderData
 
   public containerId: string
   public width: number
@@ -33,6 +36,7 @@ export default class Editor {
     this.imgDrawer = new ImgDrawer(this)
     this.textDrawer = new TextDrawer(this)
     this.transformer = new Transformer(this)
+    this.renderData = new RenderData(this)
 
     // 创建舞台对象，它是所有图形对象的容器
     this.stage = new Konva.Stage({
