@@ -12,6 +12,8 @@ import { defineConfig } from "vite"
 import vue from "@vitejs/plugin-vue"
 import eslintPlugin from "vite-plugin-eslint"
 import AutoImport from "unplugin-auto-import/vite"
+import Components from "unplugin-vue-components/vite"
+import { ElementPlusResolver } from "unplugin-vue-components/resolvers"
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -26,6 +28,7 @@ export default defineConfig({
 				/\.vue\?vue/, // .vue
 				/\.md$/, // .md
 			],
+			resolvers: [ElementPlusResolver()],
 			// 解决eslint报错问题
 			eslintrc: {
 				// 这里先设置成true然后npm run dev 运行之后会生成 .eslintrc-auto-import.json 文件之后，在改为false
@@ -33,6 +36,9 @@ export default defineConfig({
 				filepath: "./.eslintrc-auto-import.json", // 生成的文件路径
 				globalsPropValue: true,
 			},
+		}),
+		Components({
+			resolvers: [ElementPlusResolver()],
 		}),
 		// 配置vite在运行的时候自动检测eslint规范
 		eslintPlugin({

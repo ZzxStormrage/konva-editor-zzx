@@ -12,7 +12,7 @@ module.exports = {
 	// 指定 HTML 文件的空格敏感度 (css|strict|ignore;默认css)
 	htmlWhitespaceSensitivity: "css",
 	// 当文件已经被 Prettier 格式化之后，是否会在文件顶部插入一个特殊的 @format 标记，默认false
-	insertPragma: true,
+	insertPragma: false,
 	// 在 JSX 中使用单引号替代双引号，默认false
 	jsxSingleQuote: false,
 	// 每行最多字符数量，超出换行(默认80)
@@ -35,4 +35,4 @@ module.exports = {
 	useTabs: true,
 	// vue 文件中是否缩进 <style> 和 <script> 标签，默认 false
 	vueIndentScriptAndStyle: true,
-};
+}
