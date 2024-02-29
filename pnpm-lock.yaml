@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  alova:
+    specifier: ^2.17.0
+    version: 2.17.0
   konva:
     specifier: ^9.2.3
     version: 9.2.3
@@ -702,6 +705,11 @@ packages:
       json-schema-traverse: 0.4.1
       uri-js: 4.4.1
     dev: true
+
+  /alova@2.17.0:
+    resolution: {integrity: sha512-aWq0BDsXOVKTYphncy9eZqalZXBpRRnIUJJ2/UWa2APzjeasAxQvXSENbBxfb9Yc/KTbqvfSo9vD3M5TVqkSWQ==}
+    engines: {node: '>= 0.12.0'}
+    dev: false
 
   /ansi-regex@5.0.1:
     resolution: {integrity: sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ==}

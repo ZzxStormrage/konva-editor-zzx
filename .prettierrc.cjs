@@ -1,51 +1,38 @@
-/*
- * @Author: zzx 452436275@qq.com
- * @Date: 2023-12-05 11:37:31
- * @LastEditors: zzx 452436275@qq.com
- * @LastEditTime: 2023-12-05 11:37:45
- * @FilePath: /editor-main-zzx/.prettierrc.cjs
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
- */
+/** @format */
+
 module.exports = {
-  // 一行最多 120 字符
-  printWidth: 120,
-  // 使用 2 个空格缩进
-  tabWidth: 2,
-  // 不使用缩进符，而使用空格
-  useTabs: false,
-  // 行尾需要有分号
-  semi: false,
-  // 使用单引号
-  singleQuote: true,
-  // 对象的 key 仅在必要时用引号
-  quoteProps: 'as-needed',
-  // jsx 不使用单引号，而使用双引号
-  jsxSingleQuote: false,
-  // 末尾需要有逗号
-  trailingComma: 'all',
-  // 大括号内的首尾需要空格
-  bracketSpacing: true,
-  // jsx 标签的反尖括号需要换行
-  jsxBracketSameLine: false,
-  // 箭头函数，只有一个参数的时候，也需要括号
-  arrowParens: 'always',
-  // 每个文件格式化的范围是文件的全部内容
-  rangeStart: 0,
-  rangeEnd: Infinity,
-  // 不需要写文件开头的 @prettier
-  requirePragma: false,
-  // 不需要自动在文件开头插入 @prettier
-  insertPragma: false,
-  // 使用默认的折行标准
-  proseWrap: 'preserve',
-  // 根据显示样式决定 html 要不要折行
-  htmlWhitespaceSensitivity: 'css',
-  // vue 文件中的 script 和 style 内不用缩进
-  vueIndentScriptAndStyle: false,
-  // 换行符使用 crlf
-  endOfLine: 'crlf',
-  // 格式化嵌入的内容
-  embeddedLanguageFormatting: 'auto',
-  // html, vue, jsx 中每个属性占一行
-  singleAttributePerLine: false,
-}
+	// (x)=>{},单个参数箭头函数是否显示小括号。(always:始终显示;avoid:省略括号。默认:always)
+	arrowParens: "always",
+	// 开始标签的右尖括号是否跟随在最后一行属性末尾，默认false
+	bracketSameLine: false,
+	// 对象字面量的括号之间打印空格 (true - Example: { foo: bar } ; false - Example: {foo:bar})
+	bracketSpacing: true,
+	// 是否格式化一些文件中被嵌入的代码片段的风格(auto|off;默认auto)
+	embeddedLanguageFormatting: "auto",
+	// 指定 HTML 文件的空格敏感度 (css|strict|ignore;默认css)
+	htmlWhitespaceSensitivity: "css",
+	// 当文件已经被 Prettier 格式化之后，是否会在文件顶部插入一个特殊的 @format 标记，默认false
+	insertPragma: true,
+	// 在 JSX 中使用单引号替代双引号，默认false
+	jsxSingleQuote: false,
+	// 每行最多字符数量，超出换行(默认80)
+	printWidth: 120,
+	// 超出打印宽度 (always | never | preserve )
+	proseWrap: "preserve",
+	// 对象属性是否使用引号(as-needed | consistent | preserve;默认as-needed:对象的属性需要加引号才添加;)
+	quoteProps: "as-needed",
+	// 是否只格式化在文件顶部包含特定注释(@prettier| @format)的文件，默认false
+	requirePragma: false,
+	// 结尾添加分号
+	semi: false,
+	// 使用单引号 (true:单引号;false:双引号)
+	singleQuote: false,
+	// 缩进空格数，默认2个空格
+	tabWidth: 2,
+	// 元素末尾是否加逗号，默认es5: ES5中的 objects, arrays 等会添加逗号，TypeScript 中的 type 后不加逗号
+	trailingComma: "es5",
+	// 指定缩进方式，空格或tab，默认false，即使用空格
+	useTabs: true,
+	// vue 文件中是否缩进 <style> 和 <script> 标签，默认 false
+	vueIndentScriptAndStyle: true,
+};
