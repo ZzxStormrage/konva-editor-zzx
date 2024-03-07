@@ -20,6 +20,10 @@
 </template>
 
 <script setup lang="ts">
+	import { useRequest } from "alova"
+	import { getDesignBaseData } from "@/alova/methods/design.js"
+	import { formatDataToFE, getKonvaSvgData } from "@/utils/formatLayersData.js"
+	import { TransformData } from "@/interface/TransformData"
 	import Editor from "./app/KonvaEditor/index"
 
 	let editor: Editor
@@ -28,11 +32,51 @@
 		initCanvas()
 	})
 
+	let canvasBaseData = {
+		attrs: { width: 800, height: 600 },
+		className: "Stage",
+		children: [{ attrs: {}, className: "Layer", children: [] }],
+	}
+
 	// 初始化画布
 	const initCanvas = () => {
-		editor = new Editor("canvas-container", 800, 600)
+		editor = new Editor("canvas-container", canvasBaseData.attrs.width, canvasBaseData.attrs.height)
 		editor.initBackground()
 	}
+
+	// 绘制SVG
+	const drawSvg = (svgData) => {
+		editor.svgDraw.drawSvgPath(svgData)
+
+		editor.renderData.importJsonData(JSON.stringify(svgData))
+	}
+
+	// 绘制整个画布
+	const drawCanvas = (canvasData: TransformData) => {
+		let svgData = getKonvaSvgData(canvasData.canvasMap)
+		console.log("🚀 ~ file: App.vue:55 ~ svgData:", svgData["606"])
+		drawSvg(svgData["606"])
+	}
+
+	// 获取初始化数据
+	const getDesignInitData = () => {
+		let params = {
+			designSourceEnum: "PC_DESIGNER",
+			templateId: "1596083065835552770",
+			userId: "64500649037825",
+			designId: null,
+		}
+		const { onSuccess } = useRequest(getDesignBaseData(params))
+
+		onSuccess((res) => {
+			let transformData = formatDataToFE(res.data) as TransformData
+			console.log("🚀 ~ file: App.vue:72 ~ transformData:", transformData)
+
+			drawCanvas(transformData)
+		})
+	}
+
+	getDesignInitData()
 </script>
 
 <style lang="scss" scoped>
@@ -54,3 +98,4 @@
 		}
 	}
 </style>
+@/interface/transformData

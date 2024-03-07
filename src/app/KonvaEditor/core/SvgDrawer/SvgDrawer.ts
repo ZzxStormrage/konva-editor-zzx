@@ -10,15 +10,7 @@
 
 import Konva from "konva"
 import Editor from "../../index"
-import { SvgPathData } from "../../interface/Draw"
-
-interface Bounds {
-	minX: number
-	maxX: number
-	minY: number
-	maxY: number
-}
-
+import { SvgPathData, SvgDrawerData, Bounds } from "../../interface/DrawSvg"
 export class SvgDrawer {
 	private editor: Editor
 
@@ -27,7 +19,9 @@ export class SvgDrawer {
 	}
 
 	// 绘制SVG
-	public drawSvgPath(svgPaths: SvgPathData[]): void {
+	public drawSvgPath(svgPaths: SvgPathData): void {
+		console.log("🚀 ~ file: SvgDrawer.ts:23 ~ SvgDrawer ~ svgPaths:", svgPaths)
+
 		const bounds = this.calculateSvgBounds(svgPaths)
 		const { scale, offsetX, offsetY } = this.getSvgScaleOffset(this.editor.width, this.editor.height, bounds)
 

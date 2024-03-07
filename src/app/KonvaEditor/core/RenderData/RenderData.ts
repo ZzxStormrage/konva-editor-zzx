@@ -18,7 +18,7 @@ export class RenderData {
 		this.editor = editor
 	}
 
-	public importData(jsonString: string): void {
+	public importJsonData(jsonString: string): void {
 		this.editor = Konva.Node.create(jsonString, this.editor.containerId)
 	}
 }

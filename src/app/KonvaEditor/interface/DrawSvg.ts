@@ -29,3 +29,18 @@ export interface SvgPathData {
 	}
 	[key: string]: any // 为自定义字段预留
 }
+
+export interface SvgDrawerData {
+	attrs: object
+	children: Array<SvgPathData>
+	fillColor: string
+	name: string
+	[key: string]: any // 为自定义字段预留
+}
+
+export interface Bounds {
+	minX: number
+	maxX: number
+	minY: number
+	maxY: number
+}

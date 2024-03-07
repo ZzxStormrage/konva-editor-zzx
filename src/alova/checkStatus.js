@@ -6,7 +6,7 @@
  * @FilePath: /ele-h5-pages/src/services/http/checkStatus.js
  */
 
-import { MessagePlugin } from "tdesign-vue-next"
+import { ElMessage } from "element-plus"
 
 export function checkStatus(status, msg) {
 	let errMessage = null
@@ -54,6 +54,6 @@ export function checkStatus(status, msg) {
 	}
 
 	if (errMessage) {
-		MessagePlugin.error({ content: errMessage })
+		ElMessage.error({ content: errMessage })
 	}
 }

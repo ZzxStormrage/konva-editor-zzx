@@ -14,9 +14,15 @@ import eslintPlugin from "vite-plugin-eslint"
 import AutoImport from "unplugin-auto-import/vite"
 import Components from "unplugin-vue-components/vite"
 import { ElementPlusResolver } from "unplugin-vue-components/resolvers"
+import { resolve } from "path"
 
 // https://vitejs.dev/config/
 export default defineConfig({
+	resolve: {
+		alias: {
+			"@": resolve("src"),
+		},
+	},
 	plugins: [
 		vue(),
 		AutoImport({
@@ -45,4 +51,24 @@ export default defineConfig({
 			include: ["src/**/*.ts", "src/**/*.js", "src/**/*.vue", "src/*.ts", "src/*.js", "src/*.vue"],
 		}),
 	],
+
+	server: {
+		// 是否开启 https
+		https: false,
+		// 端口号
+		port: 5137,
+		// 监听所有地址
+		host: "0.0.0.0",
+		// 服务启动时是否自动打开浏览器
+		open: true,
+		// 允许跨域
+		cors: true,
+		proxy: {
+			"/api": {
+				target: "https://pceditor.ele007.com", //  线上
+				changeOrigin: true, // 是否允许跨域
+				secure: true, // 如果是https接口，需要配置这个参数
+			},
+		},
+	},
 })
