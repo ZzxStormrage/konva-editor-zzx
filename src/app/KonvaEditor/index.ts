@@ -15,6 +15,8 @@ import { TextDrawer } from "./core/TextDrawer/TextDrawer"
 import { Transformer } from "./core/Transformer/Transformer"
 import { RenderData } from "./core/RenderData/RenderData"
 
+import { InitOptions } from "./interface/InitOptions"
+
 export default class Editor {
 	public stage: Konva.Stage
 	public layer: Konva.Layer
@@ -29,10 +31,10 @@ export default class Editor {
 	public width: number
 	public height: number
 
-	constructor(containerId: string, width: number, height: number) {
-		this.containerId = containerId
-		this.width = width
-		this.height = height
+	constructor(options: InitOptions) {
+		this.containerId = options.containerId
+		this.width = options.width
+		this.height = options.height
 
 		this.svgDraw = new SvgDrawer(this)
 		this.imgDrawer = new ImgDrawer(this)
@@ -52,6 +54,8 @@ export default class Editor {
 
 		// 将图层添加到舞台
 		this.stage.add(this.layer)
+
+		// this.initBackground()
 	}
 
 	/**
@@ -67,6 +71,9 @@ export default class Editor {
 			strokeWidth: 0,
 			listening: false, // 设置为false使得矩形不可交互
 		})
+
+		// 将矩形置于最底层
+		rect.moveToBottom()
 
 		// 将矩形添加到图层
 		this.layer.add(rect)

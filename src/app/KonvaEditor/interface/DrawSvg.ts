@@ -9,35 +9,11 @@
  */
 
 export interface SvgPathData {
-	className: string
-	left: number
-	top: number
-	width: number
-	height: number
-	attrs: {
-		id: string
-		x: number
-		y: number
-		surfaceName: string
-		type: string
-		data: string
-		stroke: string
-		fill: string
-		name: string
-		listening: boolean
-		[key: string]: any // 为自定义字段预留
-	}
+	x: number
+	y: number
+	data: string
 	[key: string]: any // 为自定义字段预留
 }
-
-export interface SvgDrawerObject {
-	attrs: object
-	children: Array<SvgPathData>
-	fillColor: string
-	name: string
-	[key: string]: any // 为自定义字段预留
-}
-
 export interface Bounds {
 	minX: number
 	maxX: number

@@ -22,7 +22,7 @@
 <script setup lang="ts">
 	import { useRequest } from "alova"
 	import { getDesignBaseData } from "@/alova/methods/design.js"
-	import { formatDataToFE, getKonvaSvgData } from "@/utils/formatLayersData.js"
+	import { formatDataToFE, getKonvaData, getSvgData } from "@/utils/formatLayersData.js"
 	import { TransformData } from "@/interface/TransformData"
 	import Editor from "./app/KonvaEditor/index"
 
@@ -30,32 +30,22 @@
 
 	onMounted(() => {})
 
-	let canvasBaseData = {
-		attrs: { width: 800, height: 600 },
-		className: "Stage",
-		children: [{ attrs: {}, className: "Layer", children: [] }],
-	}
-
 	// 初始化画布
 	const initCanvas = () => {
-		editor = new Editor("canvas-container", canvasBaseData.attrs.width, canvasBaseData.attrs.height)
-		editor.initBackground()
-	}
+		let options = {
+			containerId: "canvas-container",
+			width: 800,
+			height: 800,
+		}
 
-	// 绘制SVG
-	const drawSvg = (svgData) => {
-		editor.svgDraw.drawSvgPath(svgData)
-		editor.renderData.importJsonData(JSON.stringify(svgData))
+		editor = new Editor(options)
 	}
 
 	// 绘制整个画布
 	const drawCanvas = (canvasData: TransformData) => {
-		let svgData = getKonvaSvgData(canvasData.canvasMap)
-		console.log("🚀 ~ file: App.vue:54 ~ svgData:", svgData)
-
-		// console.log("🚀 ~ file: App.vue:54 ~ svgData:", svgData["606"][0])
-
-		// drawSvg(svgData["606"][0])
+		// let canvasMap = getKonvaData(canvasData.canvasMap)
+		// let svgData = getSvgData(canvasMap)
+		// editor.svgDraw.drawSvgPath(svgData)
 	}
 
 	// 获取初始化数据

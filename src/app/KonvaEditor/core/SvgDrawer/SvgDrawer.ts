@@ -10,7 +10,7 @@
 
 import Konva from "konva"
 import Editor from "../../index"
-import { SvgPathData, SvgDrawerObject, Bounds } from "../../interface/DrawSvg"
+import { SvgPathData, Bounds } from "../../interface/DrawSvg"
 export class SvgDrawer {
 	private editor: Editor
 
@@ -19,25 +19,15 @@ export class SvgDrawer {
 	}
 
 	// 绘制SVG
-	public drawSvgPath(svgPaths: SvgDrawerObject): void {
-		const bounds = this.calculateSvgBounds(svgPaths)
-		const { scale, offsetX, offsetY } = this.getSvgScaleOffset(this.editor.width, this.editor.height, bounds)
-
+	public drawSvgPath(svgPaths: SvgPathData[]) {
 		svgPaths.forEach((pathData: SvgPathData) => {
-			const path = new Konva.Path({
-				...pathData,
-				x: (pathData.x || 0) * scale + offsetX,
-				y: (pathData.y || 0) * scale + offsetY,
-				scaleX: scale,
-				scaleY: scale,
-			})
+			const path = new Konva.Path(pathData)
 			this.editor.layer.add(path)
 		})
-
-		this.editor.layer.draw()
+		this.editor.stage.add(this.editor.layer)
 	}
 
-	public changeSvgBgColor(pathIds: string[], color: string): void {
+	public changeSvgBgColor(pathIds: string[], color: string) {
 		pathIds.forEach((id) => {
 			const node = this.editor.getCanvasNodeById(id)
 			if (node) {

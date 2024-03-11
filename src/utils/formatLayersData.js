@@ -366,7 +366,9 @@ export function formatLoading(layout, layer) {
 	return { imgData, fonts }
 }
 
-export function getKonvaSvgData(canvasMap) {
+export function getKonvaData(canvasMap) {
+	console.log("🚀 ~ file: formatLayersData.js:370 ~ canvasMap:", canvasMap)
+
 	let konvaData = {}
 	Object.keys(canvasMap).forEach((key) => {
 		let obj = canvasMap[key]
@@ -378,4 +380,18 @@ export function getKonvaSvgData(canvasMap) {
 		konvaData[key].push(...obj.playground.children)
 	})
 	return konvaData
+}
+
+export function getSvgData(konvaData) {
+	let svgArr = []
+
+	Object.keys(konvaData).forEach((key) => {
+		konvaData[key].forEach((data) => {
+			if (data.className === "Path") {
+				svgArr.push({ ...data.attrs, fill: "green" })
+			}
+		})
+	})
+
+	return svgArr
 }
