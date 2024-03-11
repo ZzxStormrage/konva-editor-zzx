@@ -48,20 +48,17 @@ const alovaInstance = createAlova({
 		 * @param method
 		 */
 		onSuccess: async (response, method) => {
-			if (response.status >= 400) {
-				throw new Error(response.statusText)
-			}
+			// if (response.status >= 400) {
+			// 	throw new Error(response.statusText)
+			// }
 
 			const json = await response.json()
 
-			if ((json.code && json.code !== 0) || (json.flag === false && json.code !== 401)) {
-				// 抛出错误或返回reject状态的Promise实例时，此请求将抛出错误
-				checkStatus(response.status, json.msg || "糟糕出错了")
-
-				// MessagePlugin.error({ content: json.msg || '糟糕出错了' })
-
-				throw new Error(json.msg)
-			}
+			// if ((json.code && json.code !== 0) || (json.flag === false && json.code !== 401)) {
+			// 	// 抛出错误或返回reject状态的Promise实例时，此请求将抛出错误
+			// 	checkStatus(response.status, json.msg || "糟糕出错了")
+			// 	throw new Error(json.msg)
+			// }
 			return json.data
 			// 解析的响应数据将传给method实例的transformData钩子函数，这些函数将在后续讲解
 		},
@@ -73,7 +70,6 @@ const alovaInstance = createAlova({
 		 * @param method
 		 */
 		onError: (err, method) => {
-			// error('Request Error!');
 			return Promise.reject({ err, method })
 		},
 	},

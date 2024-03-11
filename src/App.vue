@@ -28,9 +28,7 @@
 
 	let editor: Editor
 
-	onMounted(() => {
-		initCanvas()
-	})
+	onMounted(() => {})
 
 	let canvasBaseData = {
 		attrs: { width: 800, height: 600 },
@@ -47,15 +45,17 @@
 	// 绘制SVG
 	const drawSvg = (svgData) => {
 		editor.svgDraw.drawSvgPath(svgData)
-
 		editor.renderData.importJsonData(JSON.stringify(svgData))
 	}
 
 	// 绘制整个画布
 	const drawCanvas = (canvasData: TransformData) => {
 		let svgData = getKonvaSvgData(canvasData.canvasMap)
-		console.log("🚀 ~ file: App.vue:55 ~ svgData:", svgData["606"])
-		drawSvg(svgData["606"])
+		console.log("🚀 ~ file: App.vue:54 ~ svgData:", svgData)
+
+		// console.log("🚀 ~ file: App.vue:54 ~ svgData:", svgData["606"][0])
+
+		// drawSvg(svgData["606"][0])
 	}
 
 	// 获取初始化数据
@@ -69,9 +69,8 @@
 		const { onSuccess } = useRequest(getDesignBaseData(params))
 
 		onSuccess((res) => {
+			initCanvas()
 			let transformData = formatDataToFE(res.data) as TransformData
-			console.log("🚀 ~ file: App.vue:72 ~ transformData:", transformData)
-
 			drawCanvas(transformData)
 		})
 	}

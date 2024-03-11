@@ -30,7 +30,7 @@ export interface SvgPathData {
 	[key: string]: any // 为自定义字段预留
 }
 
-export interface SvgDrawerData {
+export interface SvgDrawerObject {
 	attrs: object
 	children: Array<SvgPathData>
 	fillColor: string
