@@ -13,10 +13,11 @@ export function getCenterPosition(
 	objectWidth: number,
 	objectHeight: number,
 	containerWidth: number,
-	containerHeight: number
+	containerHeight: number,
+	scale: number
 ): { x: number; y: number } {
-	const x = Math.max(0, (containerWidth - objectWidth) / 2)
-	const y = Math.max(0, (containerHeight - objectHeight) / 2)
+	const x = Math.max(0, Math.floor(containerWidth - objectWidth * scale) / 2)
+	const y = Math.max(0, Math.floor(containerHeight - objectHeight * scale) / 2)
 
 	return { x, y }
 }

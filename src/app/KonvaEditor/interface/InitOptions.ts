@@ -2,5 +2,10 @@ export interface InitOptions {
 	containerId: string
 	width: number
 	height: number
-	backgroundCorlor?: string
+	fill?: string
+}
+
+export interface ScaleOptions {
+	width: number
+	height: number
 }

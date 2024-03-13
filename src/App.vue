@@ -22,11 +22,13 @@
 <script setup lang="ts">
 	import { useRequest } from "alova"
 	import { getDesignBaseData } from "@/alova/methods/design.js"
-	import { formatDataToFE, getKonvaData, getSvgData } from "@/utils/formatLayersData.js"
-	import { TransformData } from "@/interface/TransformData"
+	import { formatDataToFE, setCanvasData } from "@/utils/formatLayersData.js"
+	import { TransformData, CoverType, ResultType } from "@/interface/TransformData"
 	import Editor from "./app/KonvaEditor/index"
 
 	let editor: Editor
+	// 默认面ID
+	let curCoverId: string = ""
 
 	onMounted(() => {})
 
@@ -36,16 +38,18 @@
 			containerId: "canvas-container",
 			width: 800,
 			height: 800,
+			fill: "#ccc",
 		}
-
 		editor = new Editor(options)
 	}
 
-	// 绘制整个画布
+	// 绘制单个刀版面整个画布
 	const drawCanvas = (canvasData: TransformData) => {
-		// let canvasMap = getKonvaData(canvasData.canvasMap)
-		// let svgData = getSvgData(canvasMap)
-		// editor.svgDraw.drawSvgPath(svgData)
+		let curCanvasMap = (canvasData.canvasMap as ResultType)[curCoverId] as CoverType
+		let { svgData, height, width, padding } = setCanvasData(curCanvasMap)
+
+		editor.svgDraw.drawSvgPath(svgData)
+		editor.setLayerScale(width, height, padding)
 	}
 
 	// 获取初始化数据
@@ -61,6 +65,10 @@
 		onSuccess((res) => {
 			initCanvas()
 			let transformData = formatDataToFE(res.data) as TransformData
+
+			const coverkeys = Object.keys(transformData.canvasMap)
+			curCoverId = coverkeys[0]
+
 			drawCanvas(transformData)
 		})
 	}
@@ -87,4 +95,3 @@
 		}
 	}
 </style>
-@/interface/transformData

@@ -366,32 +366,33 @@ export function formatLoading(layout, layer) {
 	return { imgData, fonts }
 }
 
-export function getKonvaData(canvasMap) {
-	console.log("🚀 ~ file: formatLayersData.js:370 ~ canvasMap:", canvasMap)
+export function setCanvasData(curCanvasMap) {
+	console.log("🚀 ~ file: formatLayersData.js:370 ~ curCanvasMap:", curCanvasMap)
 
-	let konvaData = {}
-	Object.keys(canvasMap).forEach((key) => {
-		let obj = canvasMap[key]
+	let svgData = []
 
-		if (!konvaData[key]) {
-			konvaData[key] = []
-		}
-		konvaData[key].push(...obj.background.coverList)
-		konvaData[key].push(...obj.playground.children)
-	})
-	return konvaData
-}
+	let { coverList, fillColor, height, width } = curCanvasMap.background
 
-export function getSvgData(konvaData) {
-	let svgArr = []
-
-	Object.keys(konvaData).forEach((key) => {
-		konvaData[key].forEach((data) => {
-			if (data.className === "Path") {
-				svgArr.push({ ...data.attrs, fill: "green" })
-			}
-		})
+	coverList.forEach((item) => {
+		svgData.push(
+			Object.assign(
+				{
+					...item.attrs,
+				},
+				{
+					stroke: "black",
+					strokeWidth: 2,
+					fill: fillColor,
+				}
+			)
+		)
 	})
 
-	return svgArr
+	return {
+		padding: 0.5,
+		svgData: svgData,
+		playground: [],
+		height: height,
+		width: width,
+	}
 }
